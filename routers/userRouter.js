@@ -1,11 +1,12 @@
 import express from "express";
+import { changePassword, editProfile, userDetail } from "../controllers/userController";
 import routes from "../routes";
 
 export const userRouter = express.Router();
 
-userRouter.get(routes.userDetail,(req,res) => res.send(`user_detail`));
-userRouter.get(routes.editProfile, (req,res) => res.send(`edit profile`));
-userRouter.get(routes.changePassword, (req, res) => res.send(`change password`));
+userRouter.get(routes.userDetail,userDetail);
+userRouter.get(routes.editProfile, editProfile);
+userRouter.get(routes.changePassword, changePassword);
 
 
 
