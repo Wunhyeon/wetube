@@ -1,4 +1,4 @@
-import express from "express";
+import express, { request } from "express";
 //const express = require('express');
 import morgan from "morgan";
 import helmet from "helmet";
@@ -14,7 +14,15 @@ import { localsMiddleware } from "./middlewares";
 const app = express();
 
 
-app.use(helmet({contentSecurityPolicy : false}));
+
+app.use(helmet());
+app.use((req, res, next) => {
+    // req.header({"Content-Security-Policy" : "media-src *"});
+    res.setHeader("Content-Security-Policy", "default-src *");
+   
+    
+    next();
+})
 app.set("view engine", "pug");
 app.use(cookieParser());
 app.use(bodyParser.json());
