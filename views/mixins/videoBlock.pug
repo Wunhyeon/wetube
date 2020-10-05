@@ -1,10 +1,9 @@
 mixin videoBlock(video = {})
    .videoBlock
       a(href=routes.videoDetail(video.id))
-        //- video.videoBlock__thumbnail(src=video.videoFile, controls=true)
-        video.videoBlock__thumbnail(src=video.videoFile, controls=true)
-        h4.videoBlock__title=video.title
-        h6.videoBlock__views=video.views
-
-
-        
+         if video.videoFile !==undefined && video.videoFile.substring(0,23)==='https://www.youtube.com'
+            iframe.videoBlock__thumbnail(src=video.videoFile, controls=true)
+         else
+            video.videoBlock__thumbnail(src=video.videoFile, controls=true)
+         h4.videoBlock__title=video.title
+         h6.videoBlock__views=video.views
